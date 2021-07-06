@@ -9,14 +9,14 @@ return (
 
   <div className={'grid grid-cols-12'}>
 
-    <div className={'col-span-12 border p-10 bg-purple-700 text-center'}>
+    <div className={'col-span-12 border p-10 bg-gray-50 text-center'}>
 
-      <h1 className={'text-4x text-white font-serif'}>Paper Trader</h1>
+      <h1 className={'text-4x'}>Paper Trader</h1>
 
     </div>
 
 
-    <div className={'col-span-12 md:col-span-7 border h-96 p-10'}>
+    <div className={'col-span-12 md:col-span-7 border h-96 p-10 bg-gray-50'}>
       {/*<h1 className={'text-4xl'}>Search Box</h1>*/}
 
       
@@ -27,7 +27,7 @@ return (
        
         <input type="search" className={'border w-2/3 mr-4 p-1 rounded-r-2xl rounded-l-2xl'}/>
 
-<button className={'px-6 bg-blue-600 text-white rounded py-2 mr-3'}>Search</button>
+<button className={'px-6 text-white bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 rounded py-2 mr-3'}>Search</button>
        
         </div>
 
@@ -43,9 +43,9 @@ return (
 
         <div className={'col-span-12 md:col-span-6 mt-5 flex justify-center'}>
 
-          <button className={'px-6 bg-green-600 text-white rounded py-3 mr-4'}>Buy</button>
+          <button className={'px-6 bg-yellow-400 hover:bg-yellow-200 text-white rounded py-3 mr-4'}>Buy</button>
 
-          <button className={'px-6 bg-red-600 text-white rounded py-3 mr-4'}>Sell</button>
+          <button className={'px-6 bg-pink-600 hover:bg-pink-700 text-white rounded py-3 mr-4'}>Sell</button>
 
 
         </div>
@@ -56,14 +56,14 @@ return (
 
     </div>
 
-    <div className={'col-span-12 md:col-span-5 border bg-gray-100 h-96'}>
+    <div className={'col-span-12 md:col-span-5 border bg-gray-50 h-96'}>
 
-      <h1 className={'text-4xl font-serif text-center'}>Portfolio</h1>
+      <h1 className={'text-4xl text-center'}>Portfolio</h1>
 
  
 
       <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover table table-striped table-hover">
           <thead>
             <tr>
               <th scope="col">Stock</th>
@@ -112,9 +112,9 @@ return (
         </div>
 
   
-          <button className={'px-6 bg-green-600 text-white rounded py-3 mr-4'}>Buy</button>
+          <button className={'px-6 bg-yellow-400 hover:bg-yellow-200 text-white rounded py-3 mr-4'}>Buy</button>
 
-          <button className={'px-6 bg-red-600 text-white rounded py-3 mr-4'}>OK</button>
+          <button className={'px-6 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white rounded py-3 mr-4'}>OK</button>
 
 
         </div>

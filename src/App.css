@@ -81,3 +81,30 @@
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+h1 {
+  font-family: 'Staatliches';
+  font-size: 40px;
+  color: #090088; 
+
+}
+
+p {
+  color: #930077;
+  font-weight: bold;
+}
+
+th {
+
+  color: #090088; 
+  font-weight: bold;
+
+}
+
+td{
+
+  color: #007965;
+  font-weight: bold;
+}
+
+
