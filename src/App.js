@@ -4,7 +4,6 @@ import SearchBox from "./search-box";
 import PortfolioBox from "./portfolio-box";
 
 
-
 function App() {
 return (
 <>

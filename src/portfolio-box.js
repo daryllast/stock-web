@@ -1,21 +1,23 @@
 import React, {useState, useEffect} from 'react';
 
 
+
 function PortfolioBox(props) {
 
-// const [stock, setStock] = useState();
+const [stock, setStock] = useState();
+const [stockSymbol, setStockSymbol] = useState();
 
-// const fetchStock = async () => {
-//     let res = await fetch('http://localhost:3001/api/v1/portfolio')
-//     let json = await res.json()
-//     console.log(json)
-//     setPortfolio(json)
-// };
+const fetchStock = async () => {
+    let res = await fetch('http://localhost:3000/api/v1/portfolio')
+    let data = await res.json()
+    console.log(data)
+    setStock(data)
+};
 
-// useEffect(() => {
-//     console.log('run this only once when the page loads up')
-//     fetchStock()
-// }, []);
+useEffect(() => {
+    console.log('run this only once when the page loads up')
+    fetchStock()
+}, []);
 
 const [stockSymbol, setStockSymbol] = useState('');
  const [result, setResult] = useState({symbol: '', price: ''});
@@ -65,14 +67,14 @@ const sellStock = async () => {
             </tr>
           </thead>
           
-          {/* {stock && stock.map((stocks) => {
-                        return <th key={stock.id}
+          {stock && stock.map((stock) => {
+                        return <th key={stock.id}{stock.stockSymbol}
                                    onClick={() => fetchStock(stock)}
-                                   className={(selectedStock && (selectedCategory.id == category.id)) ?  'p-14 border-b text-3xl bg-gray-200' : 'p-14 border-b text-3xl'}>{portfolio.name}</th>
-                    })} */}
+                                   className={(selectedStock && (selectedStock.id == stock.id)) ?  'p-14 border-b text-3xl bg-gray-200' : 'p-14 border-b text-3xl'}>{portfolio.name}</th>
+                    })}
           <tbody>
             <tr>
-              <th scope="row">BHP</th>
+              <th scope="row" placeholder={'Stock Symbol'}onChange={(event => setStockSymbol(event.currentTarget.value)}>{stockSymbol}</th>/th>
               <td>50</td>
               <td>2000.00</td>
               <td><button className={'px-6 bg-pink-600 hover:bg-pink-700 text-white rounded py-3 mr-4'}onClick={sellStock}>Sell</button></td>
