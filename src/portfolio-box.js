@@ -1,8 +1,52 @@
 import React, {useState, useEffect} from 'react';
 
+
 function PortfolioBox(props) {
+
+// const [stock, setStock] = useState();
+
+// const fetchStock = async () => {
+//     let res = await fetch('http://localhost:3001/api/v1/portfolio')
+//     let json = await res.json()
+//     console.log(json)
+//     setPortfolio(json)
+// };
+
+// useEffect(() => {
+//     console.log('run this only once when the page loads up')
+//     fetchStock()
+// }, []);
+
+const [stockSymbol, setStockSymbol] = useState('');
+ const [result, setResult] = useState({symbol: '', price: ''});
+
+ const [quantity, setQuantity] = useState(); 
+
+const sellStock = async () => {
+    let info = {symbol: result.symbol, quantity: quantity, price: result.price}
+    let res = await fetch('http://localhost:3000/api/v1/portfolio/:id', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(info)
+    })
+    let data = await res.json()
+    console.log('the data is', data)
+    setQuantity('')
+    setResult({symbol: '',quantity: '', price: ''})
+    setStockSymbol('')
+
+};
+
+
+
+
+ 
     return (
         <>
+
+        
 
 <div className={'col-span-12 md:col-span-5 border bg-gray-50 h-96'}>
 
@@ -17,27 +61,33 @@ function PortfolioBox(props) {
               <th scope="col">Stock</th>
               <th scope="col">Quantity</th>
               <th scope="col">Value</th>
-              <th scope="col">Buy / Sell</th>
+              <th scope="col">Sell</th>
             </tr>
           </thead>
+          
+          {/* {stock && stock.map((stocks) => {
+                        return <th key={stock.id}
+                                   onClick={() => fetchStock(stock)}
+                                   className={(selectedStock && (selectedCategory.id == category.id)) ?  'p-14 border-b text-3xl bg-gray-200' : 'p-14 border-b text-3xl'}>{portfolio.name}</th>
+                    })} */}
           <tbody>
             <tr>
               <th scope="row">BHP</th>
               <td>50</td>
               <td>2000.00</td>
-              <td>Sell</td>
+              <td><button className={'px-6 bg-pink-600 hover:bg-pink-700 text-white rounded py-3 mr-4'}onClick={sellStock}>Sell</button></td>
             </tr>
             <tr>
               <th scope="row">NAB</th>
               <td>30</td>
               <td>1200.00</td>
-              <td>Buy</td>
+              <td><button className={'px-6 bg-pink-600 hover:bg-pink-700 text-white rounded py-3 mr-4'}onClick={sellStock}>Sell</button></td>
             </tr>
             <tr>
             <th scope="row">Cash</th>
               <td></td>
               <td>8200.00</td>
-              <td></td>
+              <td><button className={'px-6 bg-pink-600 hover:bg-pink-700 text-white rounded py-3 mr-4'}onClick={sellStock}>Sell</button></td>
             </tr>
           </tbody>
         </table>
