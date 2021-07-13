@@ -14,7 +14,7 @@ setStockSymbol(event.currentTarget.value)
 
  const searchStock = async() => {
  console.log('searchStock was called')
- let res = await fetch(`http://localhost:3000/api/v1/search/${stockSymbol}`)
+ let res = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/search/${stockSymbol}`)
  let data = await res.json()
  console.log('data is', data)
  setResult({symbol: stockSymbol, price: data.price})
@@ -22,7 +22,7 @@ setStockSymbol(event.currentTarget.value)
 
  const buyStock = async () => {
     let info = {symbol: result.symbol, quantity: quantity, price: result.price}
-    let res = await fetch('http://localhost:3000/api/v1/portfolio', {
+    let res = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/portfolio`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -45,7 +45,7 @@ return (
  <div className={'col-span-12 md:col-span-7 border h-96 p-10 bg-gray-50'}>
       {/*<h1 className={'text-4xl'}>Search Box</h1>*/}
 
-      
+    
 
       <div className={'grid grid-cols-12'}>
         <div className={'col-span-12 md:col-span-6'}>
