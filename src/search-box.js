@@ -28,9 +28,10 @@ setStockSymbol(event.currentTarget.value)
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(info)
+       
     })
     let data = await res.json()
-    console.log('the data is', data)
+    console.log('the data is from buy stock', data)
     setQuantity('')
     setResult({symbol: '', price: ''})
     setStockSymbol('')

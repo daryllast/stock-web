@@ -5,7 +5,7 @@ import React, {useState, useEffect} from 'react';
 function PortfolioBox(props) {
 
 const [stock, setStock] = useState();
-const [stockSymbol, setStockSymbol] = useState();
+// const [stockSymbol, setStockSymbol] = useState();
 
 const fetchStock = async () => {
     let res = await fetch('http://localhost:3000/api/v1/portfolio')
@@ -24,14 +24,14 @@ const [stockSymbol, setStockSymbol] = useState('');
 
  const [quantity, setQuantity] = useState(); 
 
-const sellStock = async () => {
-    let info = {symbol: result.symbol, quantity: quantity, price: result.price}
-    let res = await fetch('http://localhost:3000/api/v1/portfolio/:id', {
+const sellStock = async (id) => {
+    // let info = {symbol: result.symbol, quantity: quantity, price: result.price}
+    let res = await fetch(`http://localhost:3000/api/v1/portfolio/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(info)
+        // body: JSON.stringify(info)
     })
     let data = await res.json()
     console.log('the data is', data)
@@ -67,17 +67,28 @@ const sellStock = async () => {
             </tr>
           </thead>
           
-          {stock && stock.map((stock) => {
-                        return <th key={stock.id}{stock.stockSymbol}
+          {/* {stock && stock.map((stock) => {
+                        return <tr key={stock.id}
                                    onClick={() => fetchStock(stock)}
-                                   className={(selectedStock && (selectedStock.id == stock.id)) ?  'p-14 border-b text-3xl bg-gray-200' : 'p-14 border-b text-3xl'}>{portfolio.name}</th>
-                    })}
+                                   className={(selectedStock && (selectedStock.id == stock.id)) ?  'p-14 border-b text-3xl bg-gray-200' : 'p-14 border-b text-3xl'}>{portfolio.name}</tr>
+                    })} */}
+
+              
+
           <tbody>
-            <tr>
-              <th scope="row" placeholder={'Stock Symbol'}onChange={(event => setStockSymbol(event.currentTarget.value)}>{stockSymbol}</th>/th>
+          {stock && stock.map((stock) => {
+            return <tr>
+              <th scope="row">{stock.symbol}</th>
+              <td>{stock.quantity}</td>
+              <td>{stock.price}</td>
+              <td><button className={'px-6 bg-pink-600 hover:bg-pink-700 text-white rounded py-3 mr-4'}onClick={() => sellStock(stock.id)}>Sell</button></td>
+            </tr>
+          })} 
+            {/* <tr>
+              <th scope="row">BHP</th>
               <td>50</td>
               <td>2000.00</td>
-              <td><button className={'px-6 bg-pink-600 hover:bg-pink-700 text-white rounded py-3 mr-4'}onClick={sellStock}>Sell</button></td>
+              <td><button className={'px-6 bg-pink-600 hover:bg-pink-700 text-white rounded py-3 mr-4'}onClick={() => sellStock(item.id)}>Sell</button></td>
             </tr>
             <tr>
               <th scope="row">NAB</th>
@@ -90,7 +101,7 @@ const sellStock = async () => {
               <td></td>
               <td>8200.00</td>
               <td><button className={'px-6 bg-pink-600 hover:bg-pink-700 text-white rounded py-3 mr-4'}onClick={sellStock}>Sell</button></td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
 
@@ -99,12 +110,10 @@ const sellStock = async () => {
 
       
 
-      <p className= 'ml-4'><strong>NAB</strong>: you have 30 shares at $40.00 per share.</p>
-
       <div className={'col-span-12 md:col-span-6 mt-5 flex justify-left'}>
 
       <div className={'col-span-12 md:col-span-6 mr-4 ml-4'}>
-          <input type="search" className={'border w-full p-1 rounded-r-2xl rounded-l-2xl'} />
+  
         </div>
 
         <div className={'hidden md:col-span-6 md:block'}>
@@ -112,9 +121,7 @@ const sellStock = async () => {
         </div>
 
   
-          <button className={'px-6 bg-yellow-400 hover:bg-yellow-200 text-white rounded py-3 mr-4'}>Buy</button>
-
-          <button className={'px-6 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white rounded py-3 mr-4'}>OK</button>
+          
 
 
         </div>
