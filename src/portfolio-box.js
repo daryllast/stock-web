@@ -8,7 +8,7 @@ const [stock, setStock] = useState();
 // const [stockSymbol, setStockSymbol] = useState();
 
 const fetchStock = async () => {
-    let res = await fetch('http://localhost:3000/api/v1/portfolio')
+    let res = await fetch(`http://localhost:3000/api/v1/portfolio`)
     let data = await res.json()
     console.log(data)
     setStock(data)
