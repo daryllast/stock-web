@@ -78,6 +78,7 @@ return (
           <button className={'px-6 bg-yellow-400 hover:bg-yellow-200 text-white rounded py-2 mr-3'}onClick={buyStock}>Buy</button>
 
           {/* <button className={'px-6 bg-pink-600 hover:bg-pink-700 text-white rounded py-3 mr-4'}>Sell</button> */}
+          
 
 
 
